@@ -12,6 +12,11 @@ class capturePcap(ESLEvent):
 		self.__call = {}
 		self.__debug = debug
 
+		# python是无法捕捉kill -9的
+		signal.signal(signal.SIGINT, self.__terminate)
+		signal.signal(signal.SIGTERM, self.__terminate)
+		signal.signal(signal.SIGABRT, self.__terminate)
+
 	def set_pcap(self, protocol='udp', eth='bond0', path='./pcap'):
 		self.__protocol = protocol
 		self.__eth = eth
@@ -21,7 +26,26 @@ class capturePcap(ESLEvent):
 		if not os.path.exists(path):
 			os.mkdir(path)
 
+		tcpdump.check(eth)
+
 		return self
+
+	def set_numbers(self, numbers = []):
+		self.__numbers = numbers
+		return self
+
+	def __terminate(self, *arg):
+		ESLEvent.disconnect(self)
+		for uuid, call in self.__call.items():
+			pcap = call.get("pcap", None)
+			if pcap:
+				pcap.terminate()
+				if self.__debug:
+					print("%s tcpdump end %s" % (call.get("id", "0"), call.get("pcap_name", "")))
+		else:
+			if self.__debug:
+				print("\n[end] all\n")
+			pass
 
 	def channel_event(self, event):
 		event_name = event.getHeader("Event-Name")
@@ -48,7 +72,7 @@ class capturePcap(ESLEvent):
 			caller_num = event.getHeader("Caller-Caller-ID-Number")
 			callee_num = event.getHeader("Caller-Destination-Number")
 			
-			if (caller_num in num_list or callee_num in num_list) and uuid not in self.__call:
+			if (caller_num in self.__numbers or callee_num in self.__numbers) and uuid not in self.__call:
 				session_id = event.getHeader("variable_session_id")
 
 				self.__call[uuid] = {"call":True, "caller_num":caller_num, "callee_num":callee_num,
@@ -115,27 +139,16 @@ class capturePcap(ESLEvent):
 
 		pcap = call.get("pcap", None)
 		if pcap:
+			pcap.terminate()
 			if self.__debug:
 				print("%s tcpdump end %s" % (call.get("id", "0"), call.get("pcap_name", "")))
-			pcap.terminate()
+			
 		
 		if self.__debug and not self.__call.get(call.get("uuid_other", ""), {}):
 			print("%s [end]\n" % (call.get("id", "0")))
 
 		del self.__call[uuid]
 
-	def terminate(self, *arg):
-		ESLEvent.disconnect(self)
-		for uuid, call in self.__call.items():
-			pcap = call.get("pcap", None)
-			if pcap:
-				pcap.terminate()
-				if self.__debug:
-					print("%s tcpdump end %s" % (call.get("id", "0"), call.get("pcap_name", "")))
-		else:
-			if self.__debug:
-				print("\n[end] all\n")
-			pass
 
 
 if __name__ == '__main__':
@@ -169,12 +182,7 @@ if __name__ == '__main__':
 		print("number monitored list:%s" % num_list)
 
 	p = capturePcap(options.host, options.port, options.password, debug=True)
-	p.set_pcap(eth=options.eth)
-	
-	# python是无法捕捉kill -9的
-	signal.signal(signal.SIGINT, p.terminate)
-	signal.signal(signal.SIGTERM, p.terminate)
-	signal.signal(signal.SIGABRT, p.terminate)
+	p.set_pcap(eth=options.eth).set_numbers(num_list)
 	p.run(36000)
 	
 
