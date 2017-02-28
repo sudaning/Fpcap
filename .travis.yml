@@ -27,7 +27,7 @@ install:
   - source activate test-environment
   - git clone --depth=50 --branch=master https://github.com/sudaning/Fneko.git sudaning/Fneko
   - cd sudaning/Fneko/third-party
-  - ll
+  - ls -l
   - sudo tar zxf swig-3.0.12.tar.gz
   - ls
   - cd swig-3.0.12
