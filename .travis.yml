@@ -25,6 +25,9 @@ install:
   # Replace dep1 dep2 ... with your dependencies
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
   - source activate test-environment
+  - sudo git clone https://github.com/sudaning/Fneko.git
+  - cd Fneko/third-party && tar zxf swig-3.0.12.tar.gz && cd swig-3.0.12 && ./configure && make && make install
+  - cd ../../
   - python setup.py install  # install
 
 # command to run tests
