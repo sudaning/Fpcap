@@ -27,7 +27,9 @@ install:
   - source activate test-environment
   - sudo git clone https://github.com/sudaning/Fneko.git
   - cd Fneko/third-party && tar zxf swig-3.0.12.tar.gz && cd swig-3.0.12 && ./configure && make && make install
-  - cd ../../
+  - cd ../
+  - python setup.py install
+  - cd ../
   - python setup.py install  # install
 
 # command to run tests
