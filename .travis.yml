@@ -28,6 +28,7 @@ install:
   - sudo apt-get install libpcre3 libpcre3-dev swig
   - sudo pip install pyFneko
   - sudo pip list
+  - python -c "import sys;print(sys.path)"
   - python setup.py install  # install
 
 # command to run tests
