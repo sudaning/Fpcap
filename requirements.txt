@@ -1,1 +1,1 @@
-pyFneko>=3.2
+pyFneko>=3.4

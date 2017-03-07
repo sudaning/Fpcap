@@ -26,12 +26,10 @@ install:
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
   - source activate test-environment
   - sudo apt-get install libpcre3 libpcre3-dev swig
-  - sudo pip install pyFneko
-  - sudo pip list
-  - python -c "import sys;print(sys.path)"
+  - pip install -r requirements.txt
   - python setup.py install  # install
 
 # command to run tests
 script:
   - cd tests
-  - python fpcap_test.py
+  - python test.py
