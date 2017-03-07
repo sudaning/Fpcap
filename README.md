@@ -1,11 +1,5 @@
 #Welcome to Fpcap
-![](https://travis-ci.org/sudaning/Fpcap.svg?branch=master)
-![](https://img.shields.io/pypi/v/pyFpcap.svg)
-![](https://img.shields.io/badge/python-3.5-green.svg)
-![](https://img.shields.io/badge/python-2.7-green.svg)
-![](https://img.shields.io/badge/docs-stable-brightgreen.svg?style=flat)
-![](https://img.shields.io/github/stars/sudaning/Fpcap.svg)
-![](https://img.shields.io/github/forks/sudaning/Fpcap.svg)
+[![Version][version-badge]][version-link] ![Supported-python-version][python27-badge] [![Build Status][travis-badge]][travis-link]  [![Coverage][coverage-badge]][coverage-link] ![Star][stars] ![Fork][forks] [![MIT License][license-badge]](LICENSE.md)
 
 ##Introduction
 
@@ -72,5 +66,14 @@ if __name__ == '__main__':
 If you find any bug, please report it to me by opening a issue.
 Fpcap needs to be improved, your contribution will be welcomed.
 
-
+[version-badge]:   https://img.shields.io/pypi/v/pyFpcap.svg?label=pypi
+[version-link]:    https://pypi.python.org/pypi/pyFpcap/
+[python27-badge]:  https://img.shields.io/badge/python-2.7-green.svg
+[stars]:           https://img.shields.io/github/stars/sudaning/Fpcap.svg
+[forks]:           https://img.shields.io/github/forks/sudaning/Fpcap.svg
+[travis-badge]:    https://img.shields.io/travis/sudaning/Fpcap.svg
+[travis-link]:     https://travis-ci.org/sudaning/Fpcap
+[coverage-badge]:  https://img.shields.io/coveralls/sudaning/Fpcap.svg
+[coverage-link]:   https://coveralls.io/github/sudaning/Fpcap
+[license-badge]:   https://img.shields.io/badge/license-MIT-007EC7.svg
 
