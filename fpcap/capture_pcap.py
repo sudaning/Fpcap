@@ -17,6 +17,18 @@ class capturePcap(ESLEvent):
 		signal.signal(signal.SIGTERM, self.__terminate)
 		signal.signal(signal.SIGABRT, self.__terminate)
 
+	def __enter__(self):
+		return self
+
+	def __exit__(self, exc_type, exc_value, exc_tb):
+		if exc_tb:
+			return False
+		else:
+			self.__del__()
+
+	def __del__(self):
+		self.__terminate()
+
 	def set_pcap(self, protocol='udp', eth='bond0', path='./pcap'):
 		self.__protocol = protocol
 		self.__eth = eth
