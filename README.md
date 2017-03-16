@@ -1,12 +1,12 @@
-#Welcome to Fpcap
+# Welcome to Fpcap
 [![Version][version-badge]][version-link] ![Supported-python-version][python27-badge] [![Build Status][travis-badge]][travis-link]  [![Coverage][coverage-badge]][coverage-link] ![Star][stars] ![Fork][forks] [![MIT License][license-badge]](LICENSE.md)
 
-##Introduction
+## Introduction
 
 Fpcap is a pure Python library designed to capture RTP on established session of [FREESWITCH](https://freeswitch.org/).
 In [/scripts](https://github.com/sudaning/Fpcap/tree/master/scripts) , there are some scripts written by me for daily use.
 
-##Installation
+## Installation
 1. Via **pip**  
 ```pip install pyFpcap```  
 2. Via **easy_install**  
@@ -14,11 +14,11 @@ In [/scripts](https://github.com/sudaning/Fpcap/tree/master/scripts) , there are
 3. From **source**(recommend)   
 ```python setup.py install```  
 
-##upgrading
+## upgrading
 1. Via **pip**  
 ```pip install --upgrade pyFpcap```
 
-##Examples
+## Examples
 ```python
 #!/usr/bin/env python 
 # -*- coding: utf-8 -*- 
@@ -61,7 +61,7 @@ if __name__ == '__main__':
 	p.run(36000)
 ```
 
-##From the author
+## From the author
 **Welcome to use Fpcap (●'◡'●)ﾉ♥**  
 If you find any bug, please report it to me by opening a issue.
 Fpcap needs to be improved, your contribution will be welcomed.
