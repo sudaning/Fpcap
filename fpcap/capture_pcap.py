@@ -76,7 +76,8 @@ class capturePcap(ESLEvent):
 	def channel_create(self, event):
 		
 		if self.__debug:
-			print(event.getHeader("unique-id"), event.getHeader("Caller-Caller-ID-Number"), event.getHeader("Caller-Destination-Number"), event.getHeader("Caller-Callee-ID-Number"))
+			#print(event.getHeader("unique-id"), event.getHeader("Caller-Caller-ID-Number"), event.getHeader("Caller-Destination-Number"), event.getHeader("Caller-Callee-ID-Number"))
+			pass
 		uuid = event.getHeader("unique-id")
 		call_dir = event.getHeader("Caller-Direction")
 

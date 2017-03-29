@@ -34,6 +34,6 @@ if __name__ == '__main__':
 	else:
 		print("number monitored list:%s" % num_list)
 
-	p = capturePcap(options.host, options.port, options.password, debug=True)
+	p = capturePcap(options.host, options.port, options.password, debug=False)
 	p.set_pcap(eth=options.eth).set_numbers(num_list)
 	p.run(36000)
